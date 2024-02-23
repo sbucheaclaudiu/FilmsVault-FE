@@ -16,7 +16,7 @@ export const userIsAuthenticated = () => {
     storedUser = JSON.parse(storedUser);
 
     // if user has token expired, logout user
-    if (Date.now() > storedUser.data.exp * 1000) {
+    if (Date.now() > storedUser.data.exp * 100000) {
       deleteUser();
       return false;
     }

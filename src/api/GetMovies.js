@@ -1,7 +1,7 @@
 import axios from "axios";
 import { authHeader } from "../auth/AuthContext";
 
-const baseURL = "http://localhost:8080/moviesVault/getMovies/";
+const baseURL = "http://localhost:8080/moviesVault/getRandomMovies/";
 
 export const getMovies = async (moviesType) => {
   try {

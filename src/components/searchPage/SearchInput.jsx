@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import qs from "query-string"
-import { useNavigate } from "react-router-dom";
-import useDebounce from '../../hooks/useDebounce';
-import { IoSearch } from "react-icons/io5";
+import React from 'react'
 import "../styleComponents.css"
 
 function SearchInput(props) {

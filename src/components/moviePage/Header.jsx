@@ -1,27 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx'
 import { FaUserFriends } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
-import { MdAccountCircle } from "react-icons/md";
 import AccountButton from '../utils/AccountButton';
-import ModifyPlaylistModal from '../modals/ModifyPlaylistModal';
-import PlaylistHeaderComp from './PlaylistHeaderComp';
+import HeaderContent from './HeaderContent';
 
 function Header(props) {
+    const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
-  return (
-    <div className={twMerge(`
-        h-fit
-        bg-gradient-to-b 
-        from-rose-600
+    return (
+        <div 
+        style={{'--image-url': `url(${props.movie.backdropPath})`
+        }}
+        className={twMerge(`
+        relative
+        bg-[image:var(--image-url)]
+        bg-cover
+        bg-center
         px-6
         pt-6
-        `, props.className)}>
+        pb-24
+        z-10
+        `, props.className)}
+        >
+          <div className='relative z-10'>
             <div className='
                  w-full
                  mb-2
@@ -158,9 +163,13 @@ function Header(props) {
                     <AccountButton />
                 </div>
             </div>
-            <PlaylistHeaderComp playlist={props.playlist}/>
+                <HeaderContent movie={props.movie}/>
+            </div>
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900 opacity-100"></div>
+            </div>
     </div>
-  )
+    )
 }
 
 export default Header

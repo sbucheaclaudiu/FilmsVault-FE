@@ -1,10 +1,20 @@
 import React from 'react'
 import BottomMovieHover from './BottomMovieHover'
+import { useNavigate } from 'react-router-dom';
+import { getDetails } from '../../api/GetDetails';
 
 function MovieItem(props) {
-  
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    const movieDetails = await getDetails(props.movie.type, props.movie.movieId);
+
+    navigate(`/movie/${props.movie.movieName.replace(/\s/g, "")}`, { state: { movie: movieDetails } });
+  }
+
   return (
         <div 
+                onClick={handleClick}
                  key={props.movie.movieId}
                  className='
                  relative
@@ -32,7 +42,7 @@ function MovieItem(props) {
 					    className='overlay backdrop-blur-md flex w-full items-center hover:cursor-text'>
 						    <BottomMovieHover movieName={props.movie.movieName}/>
 					</div>
-         </div>
+        </div>
   )
 }
 
