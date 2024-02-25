@@ -3,6 +3,7 @@ import SidebarItem from './SidebarItem'
 import { useLocation } from 'react-router-dom'
 import { HiHome } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
+import { GiArtificialHive } from "react-icons/gi";
 
 function NavBox() {
   const location = useLocation();
@@ -20,6 +21,12 @@ function NavBox() {
       label: "Search",
       active: pathname === "/search",
       href: '/search',
+    },
+    {
+      icon: GiArtificialHive,
+      label: "AI",
+      active: pathname === "/ai",
+      
     }
   ], []);
   
@@ -33,7 +40,7 @@ function NavBox() {
           <div className='
                flex
                flex-col
-               gap-y-4
+               gap-y-2
                px-4
                py-4
                '>

@@ -6,7 +6,8 @@ import React from "react";
 import Search from "./pages/search/Search";
 import ToasterProvider from "./components/use/ToasterProvider";
 import Playlist from "./pages/playlist/Playlist";
-import Movie from "./pages/Movie/Movie";
+import Movie from "./pages/movie/Movie";
+import Person from "./pages/person/Person";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
               <Route path="/search" element= { <Search/>} />
               <Route path="/playlist/:id" element= { <Playlist /> } />
               <Route path="/movie/:id" element= { <Movie /> } />
+              <Route path="/tvShow/:id" element= { <Movie /> } />
+              <Route path="/person/:id" element= { <Person /> } />
             </Routes>
         </BrowserRouter>
       

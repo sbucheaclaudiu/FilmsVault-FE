@@ -7,9 +7,17 @@ function MovieItem(props) {
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    const movieDetails = await getDetails(props.movie.type, props.movie.movieId);
-
-    navigate(`/movie/${props.movie.movieName.replace(/\s/g, "")}`, { state: { movie: movieDetails } });
+    const details = await getDetails(props.movie.type, props.movie.movieId);
+    
+    if(props.movie.type === "movie"){
+      navigate(`/movie/${props.movie.movieName.replace(/\s/g, "")}`, { state: { movie: details } });
+    }
+    else if(props.movie.type === "tv"){
+      navigate(`/tvShow/${props.movie.movieName.replace(/\s/g, "")}`, { state: { movie: details } });
+    }
+    else if(props.movie.type === "person"){
+      navigate(`/person/${props.movie.movieName.replace(/\s/g, "")}`, { state: { person: details } });
+    }
   }
 
   return (

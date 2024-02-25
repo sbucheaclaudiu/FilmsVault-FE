@@ -10,7 +10,7 @@ function Button(props) {
         `
         w-full 
         rounded-full 
-        bg-green-500
+        bg-rose-600
         border
         border-transparent
         px-3 

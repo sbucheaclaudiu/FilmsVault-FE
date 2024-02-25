@@ -102,6 +102,7 @@ function ModifyPlaylistModal(props) {
                     backdrop-blur-sm
                     fixed
                     inset-0
+                    !z-40
                 '
                 />
                 <Dialog.Content
@@ -125,6 +126,7 @@ function ModifyPlaylistModal(props) {
                     bg-neutral-800
                     p-[25px]
                     focus:outline-none
+                    !z-50 
             '>
                     <Dialog.Title
                         className='

@@ -7,12 +7,17 @@ function VideoItem(props) {
     height: '230',
     width: '360',
     playerVars: {
-      autoplay: 0,
+        'autoplay': 0,
+        'controls': 0,
+        'autohide': 1,
+        'wmode': 'opaque',
+        'origin': 'http://localhost:8100' 
     },
   };
 
   return (
-    <div className='
+    <div 
+          className='
             video-container
             overflow-hidden
             !px-0

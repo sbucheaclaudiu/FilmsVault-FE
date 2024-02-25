@@ -66,7 +66,7 @@ function AccountButton() {
                           bg-neutral-800
                             rounded-md 
                             shadow-md
-                            p-[5px]
+                            p-[7px]
 
             '>
               <button onClick={handleProfile} 

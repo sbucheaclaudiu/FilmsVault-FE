@@ -1,8 +1,15 @@
 import React from 'react'
+import { getDetails } from '../../api/GetDetails';
+import { useNavigate } from 'react-router-dom';
 
 function CastItem(props) {
 
+  const navigate = useNavigate();
+
   const handleClick = async () => {
+    const details = await getDetails("person", props.person.personId);
+
+    navigate(`/person/${props.person.name.replace(/\s/g, "")}`, { state: { person: details } });
   }
 
   return (

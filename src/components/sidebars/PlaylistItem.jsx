@@ -16,7 +16,7 @@ function PlaylistItem(props) {
             items-center 
             gap-x-3
             cursor-pointer 
-          hover:bg-neutral-800/50 
+          hover:bg-neutral-700/60 
             w-full 
             p-2
             rounded-md
@@ -33,10 +33,10 @@ function PlaylistItem(props) {
                 fill="true"
                 src={
                     props.playlist.imagePath.endsWith("watchlist")
-                        ? `${process.env.PUBLIC_URL}/watchlist.jpg`
+                        ? `${process.env.PUBLIC_URL}/actorBackground.jpg`
                         : props.playlist.imagePath.endsWith("watched")
-                        ? `${process.env.PUBLIC_URL}/vault.jpg`
-                        : `${process.env.PUBLIC_URL}/watchlist2.jpg`
+                        ? `${process.env.PUBLIC_URL}/actorBackground2.jpg`
+                        : `${process.env.PUBLIC_URL}/defaultPlaylist.jpg`
                 }
                 alt="playlist photo"
                 className='object-cover h-full w-full'

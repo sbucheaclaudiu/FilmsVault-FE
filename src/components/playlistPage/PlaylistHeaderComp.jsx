@@ -23,10 +23,10 @@ function PlaylistHeaderComp(props) {
                 '>
                     <div className='
                             relative
-                            h-32
-                            w-32
-                            lg:h-44
-                            lg:w-44
+                            h-36
+                            w-36
+                            lg:h-48
+                            lg:w-48
                             rounded-xl
                             overflow-hidden
                     '>
@@ -34,16 +34,15 @@ function PlaylistHeaderComp(props) {
                                 className='relative group overflow-hidden'
                         >
                           <img 
-                            fill="true"
                             src={
                                 props.playlist.imagePath.endsWith("watchlist")
-                                    ? `${process.env.PUBLIC_URL}/watchlist.jpg`
-                                    : props.playlist.imagePath.endsWith("watched")
-                                    ? `${process.env.PUBLIC_URL}/vault.jpg`
-                                    : `${process.env.PUBLIC_URL}/watchlist2.jpg`
+                                ? `${process.env.PUBLIC_URL}/actorBackground.jpg`
+                                : props.playlist.imagePath.endsWith("watched")
+                                ? `${process.env.PUBLIC_URL}/actorBackground2.jpg`
+                                : `${process.env.PUBLIC_URL}/defaultPlaylist.jpg`
                             }
                             alt="playlist photo"
-                            className='object-cover h-full w-full hover:brightness-50'
+                            className='object-cover object-center h-full w-full hover:brightness-50'
                           />
                         </button>
                     </div>

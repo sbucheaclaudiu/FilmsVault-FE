@@ -4,6 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import CreatePlaylistModal from '../modals/CreatePlaylistModal'
 import { getPlaylists } from '../../api/Playlist';
 import PlaylistItem from './PlaylistItem';
+import { CgStack } from "react-icons/cg";
 
 function Library() {
   
@@ -44,12 +45,12 @@ function Library() {
                      items-center
                      gap-x-2
                      '>
-                    <TbPlaylist className="text-neutral-400" size={26}/>
+                    <CgStack className="text-neutral-400" size={26}/>
                     <p className='
                        text-neutral-400
-                       font-medium
                        text-md
                        my-0
+                       font-semibold
                        '> 
                         Your Library
                     </p>

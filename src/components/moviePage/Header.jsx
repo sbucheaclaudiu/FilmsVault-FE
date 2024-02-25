@@ -22,7 +22,7 @@ function Header(props) {
         bg-center
         px-6
         pt-6
-        pb-24
+        pb-32
         z-10
         `, props.className)}
         >
@@ -163,7 +163,7 @@ function Header(props) {
                     <AccountButton />
                 </div>
             </div>
-                <HeaderContent movie={props.movie}/>
+                <HeaderContent movie={props.movie} isMovie={props.isMovie} isTV={props.isTV}/>
             </div>
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900 opacity-100"></div>

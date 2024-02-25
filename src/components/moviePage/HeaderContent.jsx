@@ -35,9 +35,16 @@ function HeaderContent(props) {
                             mt-4
                             md:mt-0
                     '>
-                    <div className='hidden md:block font-semibold text-sm text-white'>
-                        Movie
+                    {props.isMovie && <div className='hidden md:block font-semibold text-sm text-white'>
+                        MOVIE
                     </div>
+                    }
+
+                    {props.isTV && <div className='hidden md:block font-semibold text-sm text-white'>
+                        TV SHOW
+                    </div>
+                    }
+                    
                     <h1 className='
                                 text-white
                                 text-4xl
@@ -49,7 +56,7 @@ function HeaderContent(props) {
                         '>
                         {props.movie.movieName}
                     </h1>
-                    <div className='
+                    {props.isMovie && <div className='
                               text-white
                                 text-xl
                                 font-semibold
@@ -57,7 +64,20 @@ function HeaderContent(props) {
                                 items-center
                         '>
                         {props.movie.releaseDate.slice(0, 4)}&nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.runtime} minutes&nbsp;&nbsp;
-                    </div>
+                    </div> 
+                    }
+
+                    {props.isTV && <div className='
+                              text-white
+                                text-xl
+                                font-semibold
+                                flex
+                                items-center
+                        '>
+                        {props.movie.firstAirDate.slice(0, 4)} - {props.movie.lastAirDate.slice(0, 4)}&nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noofSeasons} seasons &nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noOfEpisods} ep
+                    </div> 
+                    }
+
                     <div className='
                               text-white
                                 text-xl

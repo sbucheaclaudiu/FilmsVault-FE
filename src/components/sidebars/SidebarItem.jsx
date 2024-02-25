@@ -19,13 +19,12 @@ function SidebarItem(item) {
             cursor-pointer
             hover:text-white
             transition
-            text-neutral-200
-            py-1
-            `, item.active && "text-white font-semibold"
+            text-neutral-400
+            `, item.active && "text-white"
             )
           }>
         <item.icon size={26}/>
-        <p className="truncate w-full"> {item.label} </p>
+        <p className="truncate w-full font-semibold"> {item.label} </p>
     </Link>
   )
 }
