@@ -26,6 +26,15 @@
 	background: #404040 url("../assets/search.svg") no-repeat 13px;
 }
 
+.search-input-playlist{
+	background: #404040 url("../assets/search.svg") no-repeat 13px;
+}
+
+.search-input-playlistFind{
+	background: #9c9c9c url("../assets/search.svg") no-repeat 9px;
+	background-size: 9%; 
+}
+
 [type="search"]::-webkit-search-cancel-button {
 	-webkit-appearance: none;
 	appearance: none;
@@ -67,4 +76,45 @@
   .preview-image {
 	max-width: 100%;
 	max-height: 100%;
+  }
+
+  @keyframes scale-in {
+	0% {
+	  transform: scaleX(0.2);
+	}
+	100% {
+	  transform: scaleX(1);
+	}
+  }
+
+  .search-input-playlist {
+	transform-origin: right center;
+	animation: scale-in 0.3s ease-in-out;
+  }
+
+  .addToPlaylistMenu {
+	z-index: 9999 !important;
+  }
+
+  .row-table-playlist {
+	@apply py-4 px-6 text-neutral-500;
+  }
+
+  .row-table-note {
+	max-width: 50px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-table-name {
+	max-width: 200px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	text-align: left
+  }
+
+  .title-table {
+	@apply py-2 px-6 text-left uppercase tracking-wider border-b-[1px] border-neutral-500 text-neutral-500 mb-6;
   }

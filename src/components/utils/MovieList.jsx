@@ -3,7 +3,7 @@ import "../styleComponents.css"
 import BottomMovieHover from './BottomMovieHover'
 import MovieItem from './MovieItem'
 
-function MovieList(movies) {
+function MovieList(props) {
 
     const onClick = (id) => {
     }
@@ -14,7 +14,7 @@ function MovieList(movies) {
 
   return (
     <>
-        {movies.movies.map((movie) => (
+        {props.movies.map((movie) => (
             <MovieItem 
                 key={movie.movieId}
                 onClick={() => {}}

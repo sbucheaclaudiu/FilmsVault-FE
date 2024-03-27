@@ -15,15 +15,15 @@ function Textarea(props) {
         bg-neutral-700
         border-[1px]
         border-transparent
-        px-3
-        py-3 
-        text-xs 
+        px-2
+        py-2 
+        text-md
         file:border-0 
         file:bg-transparent 
         file:text-sm 
         file:font-medium 
         placeholder:text-neutral-400 
-        placeholder:text-xs
+        placeholder:text-md
         disabled:cursor-not-allowed 
         disabled:opacity-50
         focus:outline-none

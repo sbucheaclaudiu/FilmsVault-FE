@@ -9,6 +9,7 @@ import "../styleComponents.css"
 import Textarea from '../utils/Textarea';
 import { createPlaylist } from '../../api/Playlist';
 import { uploadImage } from '../../api/uploadImage';
+import Modal from './Modal';
 
 
 function ModifyPlaylistModal(props) {
@@ -92,64 +93,10 @@ function ModifyPlaylistModal(props) {
     }
 
     return (
-        <Dialog.Root
-            open={"isOpen"}
+        <Modal
+            {...props} 
+            setIsOpenModal={props.setIsOpenModal}
         >
-            <Dialog.Portal>
-                <Dialog.Overlay
-                    className='
-                    bg-neutral-900/80
-                    backdrop-blur-sm
-                    fixed
-                    inset-0
-                    !z-40
-                '
-                />
-                <Dialog.Content
-                    className='
-                    fixed
-                    drop-shadow-md
-                    border-[2px]
-                    border-neutral-700
-                    top-[50%]
-                    left-[50%]
-                    max-h-full
-                    h-full
-                    md:h-auto
-                    md:max-h-[85vh]
-                    w-full
-                    md:w-[90vh]
-                    md:max-w-[450px]
-                    translate-x-[-50%]
-                    translate-y-[-50%]
-                    rounded-md
-                    bg-neutral-800
-                    p-[25px]
-                    focus:outline-none
-                    !z-50 
-            '>
-                    <Dialog.Title
-                        className='
-                        text-xl
-                        text-center
-                        font-bold
-                        mb-4
-                        text-white
-                    '>
-                        {props.title}
-                    </Dialog.Title>
-                    <Dialog.Description
-                        className='
-                        mb-5
-                        text-sm
-                        leading-normal
-                        text-center
-                        text-white
-                        font-semibold
-                '>
-                        {props.description}
-                    </Dialog.Description>
-
                     <div>
                         <form className='flex flex-col gap-y-4'>
 
@@ -225,31 +172,7 @@ function ModifyPlaylistModal(props) {
                             </div>
                         </form>
                     </div>
-
-                    <Dialog.Close asChild>
-                        <button
-                            onClick={onClose}
-                            className='
-                            text-neutral-400
-                            hover:text-white
-                            absolute
-                            top-[10px]
-                            right-[10px]
-                            inline-flex
-                            h-[25px]
-                            w-[25px]
-                            appearence-none
-                            items-center
-                            justify-center
-                            rounded-full
-                            focus:outline-none
-                        '>
-                            <IoMdClose />
-                        </button>
-                    </Dialog.Close>
-                </Dialog.Content>
-            </Dialog.Portal>
-        </Dialog.Root>
+        </Modal>
     )
 }
 

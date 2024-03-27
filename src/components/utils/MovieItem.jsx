@@ -48,7 +48,7 @@ function MovieItem(props) {
                     </img>
                     <div
 					    className='overlay backdrop-blur-md flex w-full items-center hover:cursor-text'>
-						    <BottomMovieHover movieName={props.movie.movieName}/>
+						    <BottomMovieHover movie={props.movie}/>
 					</div>
         </div>
   )

@@ -67,7 +67,6 @@ function AccountButton() {
                             rounded-md 
                             shadow-md
                             p-[7px]
-
             '>
               <button onClick={handleProfile} 
                       className='

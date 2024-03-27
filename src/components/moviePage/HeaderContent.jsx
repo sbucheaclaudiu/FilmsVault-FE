@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { IoMdStarOutline } from "react-icons/io";
+import { MdPlaylistAdd } from "react-icons/md";
+import AddToPlaylistMenu from '../menu/AddToPlaylistMenu';
+import { getPlaylists } from '../../api/Playlist';
+import { getPlaylistsFromLocalStorage } from '../../_data/Playlists';
 
 function HeaderContent(props) {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [playlists, setPlaylists] = useState([]);
+
+  const toggleMenu = (event) => {
+    setPlaylistsAvailable();
+    setIsMenuOpen(!isMenuOpen);
+    if(event != null){
+        event.stopPropagation();
+    }
+  };
+
+  const setPlaylistsAvailable = () => {
+    setPlaylists(getPlaylistsFromLocalStorage());
+  };
+
 
     return (
         <div className='mt-10'>
@@ -34,13 +54,14 @@ function HeaderContent(props) {
                             gap-y-2
                             mt-4
                             md:mt-0
+                            w-full
                     '>
-                    {props.isMovie && <div className='hidden md:block font-semibold text-sm text-white'>
+                    {props.movie.type === "movie" && <div className='hidden md:block font-semibold text-sm text-white'>
                         MOVIE
                     </div>
                     }
 
-                    {props.isTV && <div className='hidden md:block font-semibold text-sm text-white'>
+                    {props.movie.type === "tv" && <div className='hidden md:block font-semibold text-sm text-white'>
                         TV SHOW
                     </div>
                     }
@@ -56,7 +77,8 @@ function HeaderContent(props) {
                         '>
                         {props.movie.movieName}
                     </h1>
-                    {props.isMovie && <div className='
+
+                    {props.movie.type === "movie" && <div className='
                               text-white
                                 text-xl
                                 font-semibold
@@ -67,14 +89,14 @@ function HeaderContent(props) {
                     </div> 
                     }
 
-                    {props.isTV && <div className='
+                    {props.movie.type === "tv" && <div className='
                               text-white
                                 text-xl
                                 font-semibold
                                 flex
                                 items-center
                         '>
-                        {props.movie.firstAirDate.slice(0, 4)} - {props.movie.lastAirDate.slice(0, 4)}&nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noofSeasons} seasons &nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noOfEpisods} ep
+                        {props.movie.firstAirDate.slice(0, 4)} - {props.movie.lastAirDate.slice(0, 4)}&nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noofSeasons}&nbsp;seasons &nbsp;&nbsp;•&nbsp;&nbsp;{props.movie.noOfEpisods} ep
                     </div> 
                     }
 
@@ -84,9 +106,20 @@ function HeaderContent(props) {
                                 font-semibold
                                 flex
                                 items-center
+                                relative
+                                !z-30
                         '>
                         {props.movie.genres}
+                        <MdPlaylistAdd
+                            size={40}
+                            className='text-black font-semibold bg-white rounded-full shadow-2xl shadow-black absolute end-24 cursor-pointer hover:cursor-pointer'
+                            onClick={toggleMenu}
+                        />
+                        {isMenuOpen && (
+                            <AddToPlaylistMenu playlists={playlists} movie={props.movie} onToggleMenu={toggleMenu}/>
+                        )}
                     </div>
+
                     <div className="flex items-center">
                         <IoMdStarOutline size={26} className='text-yellow-300 mr-2'/>
                         <div className='text-xl text-white font-semibold'>
@@ -94,6 +127,7 @@ function HeaderContent(props) {
                             <span className='text-sm'> / 10 </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

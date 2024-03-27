@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Header from './Header'
 import { useLocation } from 'react-router-dom';
 import MovieInfo from './MovieInfo';
 import { getCast, getVideos } from '../../api/GetDetails';
+import HeaderContent from './HeaderContent';
+import Header from '../utils/Header';
 
 function MoviePage() {
   const location = useLocation();
   const { movie } = location.state || {};
   const [cast, setCast] = useState();
   const [video, setVideo] = useState();
-  const [isMovie, setIsMovie] = useState(false);
-  const [isTV, seIsTV] = useState(false);
 
   useEffect(() => {
     const getCastActors = async () => {
@@ -26,13 +25,6 @@ function MoviePage() {
     getCastActors();
     getMovieVideos();
 
-    if(movie.type === "movie"){
-      setIsMovie(true);
-    }
-    else{
-      seIsTV(true);
-    }
-
   }, []);
 
 
@@ -46,7 +38,11 @@ function MoviePage() {
              overflow-hidde
              overflow-y-auto
              '>
-              <Header movie={movie} isMovie={isMovie} isTV={isTV}/>
+
+              <Header backdropPath={movie.backdropPath}>
+                  <HeaderContent movie={movie}/>
+              </Header>
+
               {cast && video && <MovieInfo movie={movie} cast={cast} video={video}/>}
         </div>
     </div>

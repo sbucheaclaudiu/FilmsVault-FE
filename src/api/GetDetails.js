@@ -1,11 +1,12 @@
 import axios from "axios";
 import { authHeader } from "../auth/AuthContext";
+import { baseURL } from "./utils";
 
-const baseURL = "http://localhost:8080/moviesVault/details/";
+const baseUrl = `${baseURL}/details/`;
 
 const getAllDetails = async (id, type) => {
   try {
-      const response = await axios.get(`${baseURL}${type}?id=` + id, 
+      const response = await axios.get(`${baseUrl}${type}?id=` + id, 
             { 
                headers: authHeader(),
             });
@@ -40,7 +41,7 @@ export const getDetails = async (type, id) => {
 
 export const getCast = async (type, id) => {
     try {
-      const response = await axios.get(`${baseURL}getCast?id=` + id + "&type=" + type, 
+      const response = await axios.get(`${baseUrl}getCast?id=` + id + "&type=" + type, 
               { 
                  headers: authHeader(),
               });
@@ -54,7 +55,7 @@ export const getCast = async (type, id) => {
 
   export const getVideos = async (type, id) => {
     try {
-      const response = await axios.get(`${baseURL}getVideos?id=` + id + `&type=` + type, 
+      const response = await axios.get(`${baseUrl}getVideos?id=` + id + `&type=` + type, 
               { 
                  headers: authHeader(),
               });
@@ -68,7 +69,7 @@ export const getCast = async (type, id) => {
 
   export const getMovieCredits = async (id) => {
     try {
-      const response = await axios.get(`${baseURL}getMovieCredits?id=` + id, 
+      const response = await axios.get(`${baseUrl}getMovieCredits?id=` + id, 
               { 
                  headers: authHeader(),
               });

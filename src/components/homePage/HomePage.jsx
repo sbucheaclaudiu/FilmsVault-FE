@@ -1,13 +1,13 @@
 import React from 'react'
-import Header from './Header'
-import HomePageContent from './HomePageContent'
-
-export const revalidate = 0;
+import HomeContent from './HomeContent'
+import Header from '../utils/Header';
+import HeaderContent from './HeaderContent';
+import PersonItem from '../utils/PersonItem';
 
 function HomePage() {
   return (
     <div className='bg-black h-full flex-1 overflow-y-auto py-2'>
-        <div className='
+      <div className='
              bg-neutral-900
              rounded-lg
              h-full
@@ -15,10 +15,14 @@ function HomePage() {
              overflow-hidde
              overflow-y-auto
              '>
-              <Header/>
-              <HomePageContent/>
-        </div>
+        <Header className='bg-gradient-to-b from-rose-600'>
+          <HeaderContent />
+        </Header>
+
+        <HomeContent />
+
       </div>
+    </div>
   )
 }
 

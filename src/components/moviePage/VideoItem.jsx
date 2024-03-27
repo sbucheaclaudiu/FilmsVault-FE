@@ -26,7 +26,8 @@ function VideoItem(props) {
             relative
             !w-[360px]
             !h-[230px]
-            ml-10
+            ml-4
+            mr-8
     '>
         <YouTube videoId={props.video.videoPath} opts={opts} className="w-full h-full" />
     </div>

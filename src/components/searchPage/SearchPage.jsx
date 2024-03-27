@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Header'
 import SearchInput from './SearchInput'
 import { getMovies, searchMultiByName } from '../../api/GetMovies';
-import SearchContent from './SearchContent';
+import GridScroll from '../showFormat/GridScroll';
+import MovieList from '../utils/MovieList';
+import Header from '../utils/Header';
 
 function SearchPage() {
   const [movies, setMovies] = useState([]);
@@ -51,16 +52,23 @@ function SearchPage() {
              overflow-hidde
              overflow-y-auto
              '>
-              <Header />
-              <div className='flex items-center justify-center w-full'>
-                  <SearchInput 
+              <Header className='bg-gradient-to-b from-rose-600 h-[50px]'>
+                <div className='flex items-center justify-center w-full'>
+                    <SearchInput 
                       searchValue={searchValue}
                       setSearchValue={setSearchValue}
-                  />
-              </div>
-              <SearchContent movies={movies}/>
+                    />
+                </div>
+              </Header>
+
+              <GridScroll 
+                  length={movies.length}
+                  message="No movies / tv shows / actors found."
+              >
+                  <MovieList movies={movies} />
+              </GridScroll>
         </div>
-      </div>
+    </div>
   )
 }
 

@@ -1,16 +1,47 @@
 import axios from "axios";
 import { authHeader, getUser } from "../auth/AuthContext";
+import { baseURL } from "./utils";
 
-const baseURL = "http://localhost:8080/moviesVault/playlist/";
+const baseUrl = `${baseURL}/playlist/`;
 
 export const getPlaylists = async () => {
   try {
     const user = getUser();
-    const response = await axios.get(`${baseURL}getPlaylists?userId=` + user.id, 
+    const response = await axios.get(`${baseUrl}getPlaylistsByUser?userId=` + user.id, 
           { 
              headers: authHeader(),
           });
  
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export const getPlaylistById = async (id) => {
+  try {
+    const response = await axios.get(`${baseUrl}getPlaylistById?id=` + id, 
+          { 
+             headers: authHeader(),
+          });
+ 
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export const getMovieFromPlaylist = async (id) => {
+  try {
+    const response = await axios.get(`${baseUrl}getMoviesFromPlaylist?playlistId=` + id, 
+          { 
+             headers: authHeader(),
+          });
+ 
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -30,7 +61,7 @@ export const createPlaylist = async (name, description, imagePath, privatePlayli
         userId: user.id,
       };
 
-      const response = await axios.post(`${baseURL}createPlaylist`, playlistData,
+      const response = await axios.post(`${baseUrl}createPlaylist`, playlistData,
             { 
                headers: authHeader(),
             });

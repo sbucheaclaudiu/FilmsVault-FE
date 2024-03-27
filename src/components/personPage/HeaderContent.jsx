@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { IoMdStarOutline } from "react-icons/io";
 import BiographyModal from '../modals/BiographyModal';
 import CreatePlaylistModal from '../modals/CreatePlaylistModal';
@@ -11,7 +11,7 @@ function HeaderContent(props) {
 
     const onClickBiography = () => {
         setIsOpenModal(true);
-      }
+    }
 
     return (
         <div className='mt-10'>
@@ -35,7 +35,7 @@ function HeaderContent(props) {
                         src={props.person.profilePath.endsWith("null") ? `${process.env.PUBLIC_URL}/posterNotFound.jpg` : props.person.profilePath}
                         alt="profile"
                         className='h-full w-full shadow-xl'
-                        style={{ objectFit: 'cover', objectPosition: '90% 5%' }}
+                        style={{ objectFit: 'cover', objectPosition: '50% 30%' }}
                     />
                 </div>
 
@@ -46,10 +46,10 @@ function HeaderContent(props) {
                             mt-4
                             md:mt-0
                     '>
-                   <div className='hidden md:block font-semibold text-sm text-white'>
+                    <div className='hidden md:block font-semibold text-sm text-white'>
                         ACTOR
                     </div>
-                    
+
                     <h1 className='
                                 text-white
                                 text-4xl
@@ -70,7 +70,7 @@ function HeaderContent(props) {
                                 items-center
                                 relative
                         '>
-                        <button 
+                        <button
                             onClick={onClickBiography}
                             className='
                               text-white
@@ -80,22 +80,20 @@ function HeaderContent(props) {
                                 items-center
                                 underline
                         '>
-                        show biography
-                    </button>
-                    </div> 
-                
+                            show biography
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
-            {isOpenModal && <BiographyModal 
-                            setIsOpenModal={setIsOpenModal}
-                            title={props.person.name}
-                            description="biography"
-                            person={props.person}
-                            onPlaylistCreated={{}}
-                            //description="Save and organize genre-specific movies effortlessly in your custom playlist."
-                        />
-        }
+            {isOpenModal && <BiographyModal
+                setIsOpenModal={setIsOpenModal}
+                title=""
+                description=""
+                person={props.person}
+            />
+            }
         </div>
     )
 }

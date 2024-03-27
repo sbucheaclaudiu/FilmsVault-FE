@@ -1,10 +1,11 @@
 import axios from "axios";
+import { baseURL } from "./utils";
 
-const baseURL = "http://localhost:8080/moviesVault/auth";
+const baseUrl = `${baseURL}/auth`;
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await axios.post(`${baseURL}/login`, {
+    const response = await axios.post(`${baseUrl}/login`, {
       email: email,
       password: password,
       });
@@ -19,7 +20,7 @@ export const loginUser = async (email, password) => {
 
 export const signupUser = async (name, username, email, password) => {
   try {
-    const response = await axios.post(`${baseURL}/signup`, {
+    const response = await axios.post(`${baseUrl}/signup`, {
       name: name,
       username: username,
       email: email,

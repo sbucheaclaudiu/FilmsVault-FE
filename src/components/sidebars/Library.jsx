@@ -5,6 +5,7 @@ import CreatePlaylistModal from '../modals/CreatePlaylistModal'
 import { getPlaylists } from '../../api/Playlist';
 import PlaylistItem from './PlaylistItem';
 import { CgStack } from "react-icons/cg";
+import { savePlaylistsInLocalStorage } from '../../_data/Playlists';
 
 function Library() {
   
@@ -18,6 +19,7 @@ function Library() {
   const getUserPlaylistsRequest = async () => {
     const playlistsLst = await getPlaylists();
     setPlaylists(playlistsLst);
+    savePlaylistsInLocalStorage(playlistsLst);
   }
 
   const handlePlaylistCreated = () => {
@@ -78,7 +80,7 @@ function Library() {
         <div className='
              flex
              flex-col
-             gap-y-2
+             gap-y-[6px]
              mt-4
              px-3
              '>
