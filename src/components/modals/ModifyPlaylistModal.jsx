@@ -7,8 +7,7 @@ import toast from 'react-hot-toast';
 import { getUser } from '../../auth/AuthContext';
 import "../styleComponents.css"
 import Textarea from '../utils/Textarea';
-import { createPlaylist } from '../../api/Playlist';
-import { uploadImage } from '../../api/uploadImage';
+import { createPlaylist, updatePlaylist } from '../../api/Playlist';
 import Modal from './Modal';
 
 
@@ -17,10 +16,10 @@ function ModifyPlaylistModal(props) {
     const [isLoading, setIsLoading] = useState(false);
     const fileInputRef = useRef(null);
 
-    const [playlistName, setPlaylistName] = useState('');
-    const [description, setDescription] = useState('');
-    const [photo, setPhoto] = useState(null);
-    const [privatePlaylist, setPrivatePlaylist] = useState(false);
+    const [playlistName, setPlaylistName] = useState(props.name || '');
+    const [description, setDescription] = useState(props.descr || '');
+    const [photo, setPhoto] = useState(props.photo || null);
+    const [privatePlaylist, setPrivatePlaylist] = useState(props.privatePlaylist || false);
 
     const handlePlaylistNameChange = (event) => {
         setPlaylistName(event.target.value);
@@ -50,7 +49,7 @@ function ModifyPlaylistModal(props) {
     };
 
     const handlePrivatePlaylist = () => {
-        setPrivatePlaylist(true);
+        setPrivatePlaylist(!privatePlaylist);
     };
 
     const reset = () => {
@@ -63,22 +62,26 @@ function ModifyPlaylistModal(props) {
     const onClose = () => {
         reset();
         props.setIsOpenModal(false);
+        
     }
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        if (playlistName != '') {
+        if (playlistName == 'Watchlist' || playlistName == 'Watched') {
+            toast.error("Can't edit Watchlist or Watched");
+        }
+        else if (playlistName != '') {
             try { 
                 setIsLoading(true);
-                const result = await createPlaylist(playlistName, description, photo, privatePlaylist);
+                const result = await updatePlaylist(props.id, playlistName, description, photo, privatePlaylist);
 
-                if(result == "Failed to create playlist."){
+                if(result == "Failed to update playlist."){
                     throw Error;
                 }
 
-                toast.success("Playlist created.");
-                props.onPlaylistCreated();
+                toast.success("Playlist updated.");
+                props.onPlaylistUpdated(props.id);
 
             } catch (error) {
                 toast.error("Something went wrong.");
@@ -130,12 +133,14 @@ function ModifyPlaylistModal(props) {
                                         placeholder="Playlist name"
                                         onChange={handlePlaylistNameChange}
                                         required
+                                        value={playlistName}
                                     />
                                     <Textarea
                                         id="description"
                                         disabled={isLoading}
                                         placeholder="Description"
                                         onChange={handleDescriptionChange}
+                                        value={description}
                                     />
                                 </div>
                             </div>
@@ -155,8 +160,9 @@ function ModifyPlaylistModal(props) {
                                         cursor-pointer 
                                         rounded-full
                                         bg-neutral-600
-                                        checked:bg-green-500 
+                                        checked:bg-rose-600 
                                         hover:scale-110'
+                                    checked={privatePlaylist}
                                 />
                                 <label htmlFor="privatePlaylist" className='pl-2 text-neutral-400'>
                                     Private Playlist

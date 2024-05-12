@@ -1,7 +1,15 @@
 export const saveUser = (user) => {
-  localStorage.setItem('user', JSON.stringify(user.user));
+  const userWoImageURL = {
+    email: user.user.email,
+    id: user.user.id,
+    name: user.user.name,
+    username: user.user.username
+  }
+
+  localStorage.setItem('user', JSON.stringify(userWoImageURL));
   localStorage.setItem('token', JSON.stringify(user.token))
 }
+
 
 export const deleteUser = () => {
   localStorage.removeItem('user');

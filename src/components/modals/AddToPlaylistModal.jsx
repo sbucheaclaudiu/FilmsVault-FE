@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import "../styleComponents.css"
 import Textarea from '../utils/Textarea';
 import Rating from 'react-rating';
-import { addMovieToPlaylist } from '../../api/AddMovie';
+import { addMovieToPlaylist } from '../../api/AddRemoveMovie';
 import "../styleComponents.css"
 
 

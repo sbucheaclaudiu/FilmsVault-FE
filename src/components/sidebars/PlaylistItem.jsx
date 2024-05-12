@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getMovieFromPlaylist, getPlaylistById } from '../../api/Playlist';
 import { twMerge } from 'tailwind-merge'
+import { TiPin } from "react-icons/ti";
 
 function PlaylistItem(props) {
   const navigate = useNavigate();
@@ -10,12 +11,11 @@ function PlaylistItem(props) {
 
   const handleClick = async () => {
     const playlistInfo = await getPlaylistById(props.playlist.id);
-    const moviesList = await getMovieFromPlaylist(props.playlist.id);
+    const moviesFetch = await getMovieFromPlaylist(props.playlist.id);
 
-    navigate(`/playlist/${props.playlist.name}${props.playlist.id}`, { state: { playlist: playlistInfo, moviesList: moviesList } });
+    navigate(`/playlist/${props.playlist.name}${props.playlist.id}`, { state: { playlist: playlistInfo, moviesList: moviesFetch} });
   }
-
-
+  
   return (
       <div
         onClick={handleClick}
@@ -40,13 +40,7 @@ function PlaylistItem(props) {
                 overflow-hidden
         '>
             <img 
-                src={
-                    props.playlist.imagePath.endsWith("watchlist")
-                        ? `${process.env.PUBLIC_URL}/actorBackground.jpg`
-                        : props.playlist.imagePath.endsWith("watched")
-                        ? `${process.env.PUBLIC_URL}/actorBackground2.jpg`
-                        : `${process.env.PUBLIC_URL}/defaultPlaylist.jpg`
-                }
+                src={props.playlist.imagePath}
                 alt="playlist photo"
                 className='absolute object-cover h-full w-full'
             />
@@ -74,6 +68,11 @@ function PlaylistItem(props) {
                 By {props.playlist.playlistUsername}
             </div>
         </div>
+        {(props.playlist.name == "Watchlist" || props.playlist.name == "Watched") && 
+            <div className='ml-auto'>
+                <TiPin size={20} className='text-white' />
+            </div>
+        }
       </div>
   )
 }

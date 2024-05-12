@@ -46,8 +46,9 @@ function CreatePlaylistModal(props) {
     };
 
     const handlePrivatePlaylist = () => {
-        setPrivatePlaylist(true);
+        setPrivatePlaylist(!privatePlaylist);
     };
+
 
     const reset = () => {
         setPlaylistName('');

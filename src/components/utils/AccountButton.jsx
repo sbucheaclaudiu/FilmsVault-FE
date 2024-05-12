@@ -3,6 +3,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { deleteUser, getUser } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { getUserById } from '../../api/Account';
 
 function AccountButton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +16,12 @@ function AccountButton() {
     navigate("/login");
   };
 
-  const handleProfile = () => {
+  const handleProfile = async () => {
     const user = getUser();
-    navigate(`/profile/${user.username}`)
+    const userDetails = await getUserById(user.id);
+
+    navigate(`/account/${userDetails.username}`, { state: { user: userDetails} });
+    
   };
 
   const toggleMenu = () => {

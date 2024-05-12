@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import HeaderPlaylist from './HeaderPlaylist'
+import { getUser } from '../../auth/AuthContext';
 
 function HeaderContent() {
   const [textHeader, setTextHeader] = useState('');
 
   useEffect(() => {
     const d = new Date();
+    const user = getUser();
+
+    console.log(user);
     if(6 < d.getHours() && d.getHours() < 11){
         console.log(d.getHours());
-        setTextHeader("Good morning!");
+        setTextHeader("Good morning, " + user.name + "!");
     }
     else if(d.getHours() < 20){
-        setTextHeader("Good evening!");
+        setTextHeader("Good evening, " + user.name + "!");
     }
     else{
-        setTextHeader("Good night!");
+        setTextHeader("Good night, " + user.name + "!");
     }
   }, []);
 

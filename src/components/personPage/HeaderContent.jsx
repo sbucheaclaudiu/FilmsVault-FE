@@ -7,8 +7,6 @@ function HeaderContent(props) {
 
     const [isOpenModal, setIsOpenModal] = useState(false);
 
-    console.log(props.person);
-
     const onClickBiography = () => {
         setIsOpenModal(true);
     }

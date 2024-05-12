@@ -40,16 +40,17 @@ function MovieItem(props) {
                  ml-4
                  hover:border-[4px]
                hover:border-neutral-700
+                 hover:opacity-70
                  '>
                     <img src={props.movie.posterPath.endsWith("null") ? `${process.env.PUBLIC_URL}/posterNotFound.jpg` : props.movie.posterPath} 
                             alt="poster"
                             className='h-full w-full'
                             >
                     </img>
-                    <div
-					    className='overlay backdrop-blur-md flex w-full items-center hover:cursor-text'>
-						    <BottomMovieHover movie={props.movie}/>
-					</div>
+                    {/* <div
+					            className='overlay backdrop-blur-md flex w-full items-center hover:cursor-text'>
+						          <BottomMovieHover movie={props.movie}/>
+					          </div> */}
         </div>
   )
 }

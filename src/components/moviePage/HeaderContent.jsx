@@ -3,7 +3,6 @@ import { IoMdStarOutline } from "react-icons/io";
 import { MdPlaylistAdd } from "react-icons/md";
 import AddToPlaylistMenu from '../menu/AddToPlaylistMenu';
 import { getPlaylists } from '../../api/Playlist';
-import { getPlaylistsFromLocalStorage } from '../../_data/Playlists';
 
 function HeaderContent(props) {
 
@@ -18,8 +17,8 @@ function HeaderContent(props) {
     }
   };
 
-  const setPlaylistsAvailable = () => {
-    setPlaylists(getPlaylistsFromLocalStorage());
+  const setPlaylistsAvailable = async () => {
+    setPlaylists(await getPlaylists());
   };
 
 

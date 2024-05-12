@@ -8,7 +8,6 @@ import { getUser } from '../../auth/AuthContext';
 import "../styleComponents.css"
 import Textarea from '../utils/Textarea';
 import { createPlaylist } from '../../api/Playlist';
-import { uploadImage } from '../../api/uploadImage';
 
 
 function Modal(props) {

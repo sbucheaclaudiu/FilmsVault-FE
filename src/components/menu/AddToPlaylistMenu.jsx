@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import MenuPlaylistItem from './MenuPlaylistItem'
 import SearchInput from './SearchInput'
-import { filtrarePlaylistByName, getPlaylistsFromLocalStorage } from '../../_data/Playlists';
 import { AiOutlinePlus } from 'react-icons/ai'
 import CreatePlaylistModal from '../modals/CreatePlaylistModal';
 import "../styleComponents.css"
 import { twMerge } from "tailwind-merge"
+import { getPlaylists } from '../../api/Playlist';
 
 
 function AddToPlaylistMenu(props) {
@@ -15,15 +15,20 @@ function AddToPlaylistMenu(props) {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const menuRef = useRef(null);
 
-  const getPlaylistsByName = (searchValue) => {
+  const getPlaylistsByName = async (searchValue) => {
 
     if(searchValue == "" || searchValue == undefined){
-      const lstPlaylist = getPlaylistsFromLocalStorage();
-      setPlaylists(lstPlaylist);
+      setPlaylists(await getPlaylists());
     }
-    else{
-      const lstPlaylist = filtrarePlaylistByName(searchValue);
-      setPlaylists(lstPlaylist);
+    else {
+      const foundPlaylist= [];
+      const lstPlaylist = await getPlaylists();
+      for (const playlist of lstPlaylist) {
+        if (playlist.name.toLowerCase().includes(searchValue.toLowerCase())) {
+          foundPlaylist.push(playlist);
+        }
+      }
+      setPlaylists(foundPlaylist);
     }
   }
 

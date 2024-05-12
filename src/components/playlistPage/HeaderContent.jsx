@@ -2,14 +2,36 @@ import React, { useState } from 'react'
 import { MdAccountCircle } from "react-icons/md";
 import AccountButton from '../utils/AccountButton';
 import ModifyPlaylistModal from '../modals/ModifyPlaylistModal';
+import { CiEdit } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
+import { getMovieFromPlaylist, getPlaylistById } from '../../api/Playlist';
 
 function HeaderContent(props) {
+  const navigate = useNavigate();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [playlists, setPlaylists] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const onPhotoClick = () => {
     setIsOpenModal(true);
+  }
+
+  const onPlaylistUpdated = async (id) => {
+    // const playlistInfo = await getPlaylistById(id);
+    // const moviesFetch = await getMovieFromPlaylist(id);
+
+    // navigate(`/playlist/${playlistInfo.name}${playlistInfo.id}`, { state: { playlist: playlistInfo, moviesList: moviesFetch} });
+
+    navigate('/home');
+  
   }
 
   return (
@@ -21,27 +43,25 @@ function HeaderContent(props) {
                         items-center
                         gap-x-5
                 '>
-                    <div className='
-                            relative
-                            h-48
-                            w-48
-                            rounded-xl
-                            overflow-hidden
-                            min-w-0
-                            flex-shrink-0
-                            shadow-xl
-                    '>
+                    <div 
+                      className={`relative h-48 w-48 rounded-xl overflow-hidden min-w-0 flex-shrink-0 shadow-xl ${
+                        isHovered ? 'opacity-80' : ''
+                      }`}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={onPhotoClick}
+                    >
                       <img
-                        src={
-                          props.playlist.imagePath.endsWith("watchlist")
-                          ? `${process.env.PUBLIC_URL}/actorBackground.jpg`
-                          : props.playlist.imagePath.endsWith("watched")
-                          ? `${process.env.PUBLIC_URL}/actorBackground2.jpg`
-                          : `${process.env.PUBLIC_URL}/defaultPlaylist.jpg`
-                        }
+                        src={props.playlist.imagePath}
                         alt="playlist"
                         className='h-full w-full shadow-xl object-cover'
                       />
+                      {isHovered && (
+                      <div className="absolute inset-0 flex flex-col justify-center items-center">
+                          <CiEdit size={50} className='text-white'/>
+                          
+                      </div>
+                      )}
                     </div>
 
                     <div className='
@@ -50,6 +70,8 @@ function HeaderContent(props) {
                             gap-y-2
                             mt-4
                             md:mt-0
+                            w-auto
+                            overflow-hidden
                     '>
                         <div className='hidden md:block font-semibold text-sm text-white'>
                             Playlist
@@ -60,6 +82,7 @@ function HeaderContent(props) {
                                 sm:text-5xl
                                 lg:text-7xl
                                 font-semibold
+                                truncate
                         '>
                             {props.playlist.name}
                         </h1>
@@ -80,9 +103,14 @@ function HeaderContent(props) {
 
             {isOpenModal && <ModifyPlaylistModal 
                             setIsOpenModal={setIsOpenModal}
-                            title="Edit Details"
+                            title="Edit Playlist Details"
                             description=""
-                            onPlaylistCreated={{}}
+                            onPlaylistUpdated={onPlaylistUpdated}
+                            photo={props.playlist.imagePath}
+                            name={props.playlist.name}
+                            descr={props.playlist.description}
+                            privatePlaylist={props.playlist.privatePlaylist}
+                            id={props.playlist.id}
                             //description="Save and organize genre-specific movies effortlessly in your custom playlist."
                         />
         }

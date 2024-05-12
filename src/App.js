@@ -8,6 +8,7 @@ import ToasterProvider from "./components/use/ToasterProvider";
 import Playlist from "./pages/playlist/Playlist";
 import Movie from "./pages/movie/Movie";
 import Person from "./pages/person/Person";
+import Account from "./pages/account/Account";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/movie/:id" element= { <Movie /> } />
               <Route path="/tvShow/:id" element= { <Movie /> } />
               <Route path="/person/:id" element= { <Person /> } />
+              <Route path="/account/:id" element= { <Account /> } />
             </Routes>
         </BrowserRouter>
     </div>

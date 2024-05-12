@@ -30,7 +30,7 @@ function MoviePage() {
              overflow-hidde
              overflow-y-auto
              '>
-              <Header backdropPath={person.backdropPath}>
+              <Header className="bg-rose-600" backdropPath={person.backdropPath}>
                   <HeaderContent person={person}/>
               </Header>
               {movieCredits && <PersonInfo person={person} movieCredits={movieCredits}/>}

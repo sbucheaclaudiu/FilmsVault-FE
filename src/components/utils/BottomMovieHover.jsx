@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { MdPlaylistAdd } from "react-icons/md";
 import "../styleComponents.css"
-import { getPlaylistsFromLocalStorage } from '../../_data/Playlists';
 import AddToPlaylistMenu from '../menu/AddToPlaylistMenu';
+import { getPlaylists } from '../../api/Playlist';
 
 
 function BottomMovieHover(props) {
@@ -16,21 +16,21 @@ function BottomMovieHover(props) {
     event.stopPropagation();
   };
 
-  const setPlaylistsAvailable = () => {
-    setPlaylists(getPlaylistsFromLocalStorage());
+  const setPlaylistsAvailable = async () => {
+    setPlaylists(await getPlaylists());
   };
 
 
   return (
     <>
-      <div className='text-white font-semibold text-sm ml-4 flex-1 text-start'>
+      <div className='text-white font-semibold text-sm ml-4 flex-1 justify-center truncate'>
         {props.movie.movieName}
       </div>
       <div className='relative'>
         <MdPlaylistAdd
           size={30}
           className='text-black font-semibold bg-white rounded-full shadow-2xl shadow-black mr-2 mt-1 mb-1 cursor-pointer hover:cursor-pointer'
-          onClick={toggleMenu}
+          // onClick={toggleMenu}
         />
         {isMenuOpen && (
                 <AddToPlaylistMenu playlists={playlists} movie={props.movie} onToggleMenu={toggleMenu}/>

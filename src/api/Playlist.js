@@ -49,11 +49,56 @@ export const getMovieFromPlaylist = async (id) => {
   }
 }
 
-export const createPlaylist = async (name, description, imagePath, privatePlaylist) => {
+export const deletePlaylist = async (playlistId) => {
+  try {
+    const response = await axios.get(`${baseUrl}deletePlaylist?playlistId=` + playlistId, 
+          { 
+             headers: authHeader(),
+          });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export const createPlaylist = async (name, description, imageBase64, privatePlaylist) => {
+    try {
+      const user = getUser();
+
+      let base64WithoutPrefix = "";
+
+      if(imageBase64 != null){
+        base64WithoutPrefix = imageBase64.replace(/^data:image\/(jpeg|jpg);base64,/, "");
+      }
+      
+      const playlistData = {
+        name: name,
+        description: description,
+        imageBase64: base64WithoutPrefix,
+        privatePlaylist: privatePlaylist,
+        userId: user.id,
+      };
+
+      const response = await axios.post(`${baseUrl}createPlaylist`, playlistData,
+            { 
+               headers: authHeader(),
+            });
+   
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  export const updatePlaylist = async (id, name, description, imagePath, privatePlaylist) => {
     try {
       const user = getUser();
 
       const playlistData = {
+        playlistId: id,
         name: name,
         description: description,
         imagePath: "https://imgur.com/JZX5IJ2",
@@ -61,7 +106,7 @@ export const createPlaylist = async (name, description, imagePath, privatePlayli
         userId: user.id,
       };
 
-      const response = await axios.post(`${baseUrl}createPlaylist`, playlistData,
+      const response = await axios.post(`${baseUrl}updatePlaylist`, playlistData,
             { 
                headers: authHeader(),
             });

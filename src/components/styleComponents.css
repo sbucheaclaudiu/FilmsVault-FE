@@ -97,24 +97,51 @@
   }
 
   .row-table-playlist {
-	@apply py-4 px-6 text-neutral-500;
+	@apply py-2 px-4 text-neutral-500;
   }
 
   .row-table-note {
-	max-width: 50px;
+	max-width: 200px;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+	@apply text-neutral-500;
   }
 
   .row-table-name {
-	max-width: 200px;
+	max-width: 250px;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 	text-align: left
   }
 
+  .row-table-more {
+	max-width: 250px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	text-align: left;
+	@apply text-neutral-500;
+  }
+
   .title-table {
-	@apply py-2 px-6 text-left uppercase tracking-wider border-b-[1px] border-neutral-500 text-neutral-500 mb-6;
+	@apply py-2 px-4 text-left border-b-[1px] border-neutral-500 text-neutral-500;
+  }
+
+  td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 16px; 
+    border-bottom-left-radius: 16px;
+  }
+
+  td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 16px; 
+    border-top-right-radius: 16px; 
+  }	
+ 
+  .hover-bg-rounded:hover .row-table-more {
+    opacity: 100;
+    pointer-events: auto;
   }

@@ -6,21 +6,14 @@ import TableContent from './TableContent';
 
 function PlaylistContent(props) {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState('');
 
+  const sortByName = () => {
+    props.sortByName();
+  };
 
-  //   if(props.movie.length == 0){
-  //     return <div className='
-  //                     flex
-  //                     flex-col
-  //                     gap-y-2
-  //                     w-full
-  //                     px-6
-  //                     text-neutral-400
-  //            '>
-
-  //            </div>
-  //   }
+  const sortByDateAdded = () => {
+    props.sortByDateAdded();
+  };
 
   return (
     <div className='
@@ -36,11 +29,15 @@ function PlaylistContent(props) {
             min-h-2/4
     '>
       <TopContent
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
+        moviesList={props.moviesList}
+        sortByName={sortByName}
+        sortByDateAdded={sortByDateAdded}
+        playlist={props.playlist}
       />
       
-      <TableContent moviesList={props.moviesList} />
+      <TableContent playlist={props.playlist} moviesList={props.moviesList} fetchMovies={props.fetchMovies} searchValue={props.searchValue}/>
 
     </div>
   )

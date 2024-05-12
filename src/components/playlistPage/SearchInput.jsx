@@ -33,7 +33,6 @@ function SearchInput(props) {
            `, props.className)}
 
            placeholder='Search in playlist'
-           value={props.searchValue}
            onChange={(e) => props.setSearchValue(e.target.value)}
            type="search"
            onBlur={() => props.setIsVisible(false)}

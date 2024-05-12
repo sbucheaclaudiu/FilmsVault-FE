@@ -10,6 +10,7 @@ import AccountButton from '../utils/AccountButton';
 function Header(props) {
   const navigate = useNavigate();
 
+
   return (
     <div 
         style={{'--image-url': `url(${props.backdropPath})`}}
