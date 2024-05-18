@@ -81,7 +81,7 @@ function CreatePlaylistModal(props) {
                 props.onPlaylistCreated();
 
             } catch (error) {
-                toast.error("Something went wrong.");
+                toast.error("Something went wrong.(Playlist photo can't be null!)");
             } finally {
                 setIsLoading(false);
                 onClose();

@@ -19,6 +19,20 @@ export const getPlaylists = async () => {
   }
 }
 
+export const getPlaylistByUser = async (userId) => {
+  try {
+    const response = await axios.get(`${baseUrl}getPlaylistsByUser?userId=` + userId, 
+          { 
+             headers: authHeader(),
+          });
+ 
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 export const getPlaylistById = async (id) => {
   try {
     const response = await axios.get(`${baseUrl}getPlaylistById?id=` + id, 
@@ -93,15 +107,21 @@ export const createPlaylist = async (name, description, imageBase64, privatePlay
     }
   }
 
-  export const updatePlaylist = async (id, name, description, imagePath, privatePlaylist) => {
+  export const updatePlaylist = async (id, name, description, imageBase64, privatePlaylist) => {
     try {
       const user = getUser();
+
+      let base64WithoutPrefix = "";
+
+      if(imageBase64 != null){
+        base64WithoutPrefix = imageBase64.replace(/^data:image\/(jpeg|jpg);base64,/, "");
+      }
 
       const playlistData = {
         playlistId: id,
         name: name,
         description: description,
-        imagePath: "https://imgur.com/JZX5IJ2",
+        imagePath: base64WithoutPrefix,
         privatePlaylist: privatePlaylist,
         userId: user.id,
       };

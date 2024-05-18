@@ -10,7 +10,6 @@ function HeaderContent(props) {
     const navigate = useNavigate();
 
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     const onEditAccount = () => {
@@ -24,15 +23,6 @@ function HeaderContent(props) {
       const handleMouseLeave = () => {
         setIsHovered(false);
       };
-
-    const onDeleteAccount = () => {
-        setIsOpenDeleteModal(true);
-    }
-
-    const goToLoginPage = () => {
-        navigate(`/login`);
-
-    }
 
 
     console.log(props.user);
@@ -48,7 +38,7 @@ function HeaderContent(props) {
                 '>
                 <div
                     className={`relative h-48 w-48 rounded-full overflow-hidden min-w-0 flex-shrink-0 shadow-xl 
-                    ${isHovered ? 'brightness-75' : ''}`}
+                    ${isHovered ? 'filter brightness-50' : ''}`}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     onClick={onEditAccount}
@@ -107,23 +97,9 @@ function HeaderContent(props) {
                                 items-center
                                 relative
                         '>
+                        {props.user.noPublicPlaylists} Public playlists&nbsp;&nbsp;•&nbsp;&nbsp;{props.user.noFollowers} Followers&nbsp;&nbsp;•&nbsp;&nbsp;{props.user.noFollowing} Following
                     </div>
-                    
-                </div>
-            </div>
-            <div className='justify-center mt-4 flex gap-x-4'>
-                <EditButton 
-                            text={"Edit account"}
-                            onClick={onEditAccount}
-                            type="submit"
-                />
-                <EditButton 
-                            text={"Delete account"}
-                            onClick={onDeleteAccount}
-                            type="submit"
-                />
-            </div>
-            {isOpenModal && <ModifAccountModal 
+                    {isOpenModal && <ModifAccountModal 
                             setIsOpenModal={setIsOpenModal}
                             title="Update Your Account"
                             description=""
@@ -134,15 +110,9 @@ function HeaderContent(props) {
                             id={props.user.id}
                             //description="Save and organize genre-specific movies effortlessly in your custom playlist."
                         />
-            }   
-            {isOpenDeleteModal && <DeleteAccountModal 
-                            setIsOpenModal={setIsOpenDeleteModal}
-                            title="Are you sure you want to delete this account ?"
-                            description=""
-                            userId={props.user.id}
-                            goToLoginPage={goToLoginPage}
-                        />
-            }
+                }   
+                </div>
+            </div>
         </div>
     )
 }

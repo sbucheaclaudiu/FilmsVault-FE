@@ -9,6 +9,7 @@ import Playlist from "./pages/playlist/Playlist";
 import Movie from "./pages/movie/Movie";
 import Person from "./pages/person/Person";
 import Account from "./pages/account/Account";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/tvShow/:id" element= { <Movie /> } />
               <Route path="/person/:id" element= { <Person /> } />
               <Route path="/account/:id" element= { <Account /> } />
+              <Route path="/profile/:id" element= { <Profile /> } />
             </Routes>
         </BrowserRouter>
     </div>

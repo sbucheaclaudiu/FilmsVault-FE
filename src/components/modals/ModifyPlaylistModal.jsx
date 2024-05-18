@@ -16,6 +16,7 @@ function ModifyPlaylistModal(props) {
     const [isLoading, setIsLoading] = useState(false);
     const fileInputRef = useRef(null);
 
+    const [playlistNameOld, setPlaylistNameOld] = useState(props.name || '');
     const [playlistName, setPlaylistName] = useState(props.name || '');
     const [description, setDescription] = useState(props.descr || '');
     const [photo, setPhoto] = useState(props.photo || null);
@@ -65,10 +66,12 @@ function ModifyPlaylistModal(props) {
         
     }
 
+    console.log(playlistName);
+
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        if (playlistName == 'Watchlist' || playlistName == 'Watched') {
+        if (playlistNameOld == 'Watchlist' || playlistNameOld == 'Watched') {
             toast.error("Can't edit Watchlist or Watched");
         }
         else if (playlistName != '') {

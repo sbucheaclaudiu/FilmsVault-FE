@@ -25,7 +25,7 @@ function SearchInput(props) {
             hover:border-[0.5px]
             hover:border-white
            '
-           placeholder='Search movies, tv shows, actors'
+           placeholder={props.placeholder}
            value={props.searchValue}
            onChange={(e) => props.setSearchValue(e.target.value)}
            type="search"

@@ -9,12 +9,14 @@ import { FiTrash } from "react-icons/fi";
 import { getDetails } from '../../api/GetDetails';
 import { removeMovieFromPlaylist } from '../../api/AddRemoveMovie';
 import { LuMoveRight } from "react-icons/lu";
+import { getUser } from '../../auth/AuthContext';
 
 
 function RowContent(props) {
     const navigate = useNavigate();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [user, setUser] = useState(null);
     const menuRef = useRef(null);
 
     const toggleMenu = () => {
@@ -39,6 +41,12 @@ function RowContent(props) {
           navigate(`/person/${props.movie.movieName.replace(/\s/g, "")}`, { state: { person: details } });
         }
       }
+
+      useEffect(() => {
+        const currentUser = getUser();
+        setUser(currentUser);
+      }, []); 
+    
 
       useEffect(() => {
         const handleClickOutside = (event) => {
@@ -74,13 +82,17 @@ function RowContent(props) {
             </td>
             <td className="row-table-playlist text-xs">{props.movie.dateAdded}</td>
             <td className="row-table-more">
-                <IoIosMore size={20}
+                <button>
+                    <IoIosMore size={20}
                     className='cursor-pointer hover:text-white hover:scale-120 transform transition'
                     onClick={(event) => {
                         event.stopPropagation(); 
-                        toggleMenu(); 
+                        if (props.playlist.playlistUsername == user.username) {
+                            toggleMenu(); 
+                        }
                     }}
-                />
+                    />
+                </button>
                 {isMenuOpen && (
                     <div ref={menuRef}
                          className="absolute

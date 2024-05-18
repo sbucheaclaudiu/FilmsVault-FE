@@ -42,23 +42,27 @@ function TableContent(props) {
                   })}
             </tbody>
            </table>
+
             {props.moviesList.length == 0 &&
                   <div className='text-xl text-white font-bold pl-6 pb-10'>
                     Movies not found in this playlist.
                   </div>
             }
+
             {props.playlist.privatePlaylist && 
              <div className='text-md mt-8 ml-2 mb-4 flex items-center font-semibold'>
               <FaLock size={20} className='mr-4'/>
               <div className='text-md font-semibold'>{props.playlist.dateCreated}</div>
              </div>
             }
+
             {!props.playlist.privatePlaylist && 
              <div className='text-md mt-8 ml-2 mb-4 flex items-center font-semibold'>
               <FaUnlock size={20} className='mr-4'/>
               <div className='text-md font-semibold'>{props.playlist.dateCreated}</div>
              </div>
             }
+            
         </div>
   )
 }

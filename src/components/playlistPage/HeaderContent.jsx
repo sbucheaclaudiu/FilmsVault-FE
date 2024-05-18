@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MdAccountCircle } from "react-icons/md";
 import AccountButton from '../utils/AccountButton';
 import ModifyPlaylistModal from '../modals/ModifyPlaylistModal';
 import { CiEdit } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import { getMovieFromPlaylist, getPlaylistById } from '../../api/Playlist';
+import { getUser } from '../../auth/AuthContext';
 
 function HeaderContent(props) {
   const navigate = useNavigate();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [user, setUser] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -25,14 +27,17 @@ function HeaderContent(props) {
   }
 
   const onPlaylistUpdated = async (id) => {
-    // const playlistInfo = await getPlaylistById(id);
-    // const moviesFetch = await getMovieFromPlaylist(id);
-
-    // navigate(`/playlist/${playlistInfo.name}${playlistInfo.id}`, { state: { playlist: playlistInfo, moviesList: moviesFetch} });
-
     navigate('/home');
   
   }
+
+  useEffect(() => {
+    const currentUser = getUser();
+    setUser(currentUser);
+  }, []);
+
+  console.log(user);
+  console.log(props.playlist);
 
   return (
     <div className='mt-16'>
@@ -43,7 +48,8 @@ function HeaderContent(props) {
                         items-center
                         gap-x-5
                 '>
-                    <div 
+                    <button
+                      disabled={user && props.playlist.playlistUsername != user.username}
                       className={`relative h-48 w-48 rounded-xl overflow-hidden min-w-0 flex-shrink-0 shadow-xl ${
                         isHovered ? 'opacity-80' : ''
                       }`}
@@ -56,13 +62,12 @@ function HeaderContent(props) {
                         alt="playlist"
                         className='h-full w-full shadow-xl object-cover'
                       />
-                      {isHovered && (
+                      {(isHovered && user && props.playlist.playlistUsername == user.username) && (
                       <div className="absolute inset-0 flex flex-col justify-center items-center">
                           <CiEdit size={50} className='text-white'/>
-                          
                       </div>
                       )}
-                    </div>
+                    </button>
 
                     <div className='
                             flex

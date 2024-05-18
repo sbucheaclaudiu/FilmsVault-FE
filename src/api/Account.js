@@ -50,6 +50,23 @@ export const updateUser = async (id, username, name, email, imageBase64) => {
     }
   }
 
+  export const searchUsersByUsername = async (username) => {
+    try {
+      const response = await axios.get(`${baseUrl}searchUsersByUsername?username=` + username, 
+            { 
+               headers: authHeader(),
+            });
+  
+      const currentUser = getUser();
+      const updatedUsersList = response.data.filter(user => user.id !== currentUser.id);
+
+      return updatedUsersList;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  }
+
   export const deleteUser = async (userId) => {
     try {
       const response = await axios.get(`${baseUrl}deleteUser?userId=` + userId, 

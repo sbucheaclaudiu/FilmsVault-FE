@@ -57,6 +57,7 @@ function SearchPage() {
                     <SearchInput 
                       searchValue={searchValue}
                       setSearchValue={setSearchValue}
+                      placeholder='Search movies, tv shows, actors'
                     />
                 </div>
               </Header>

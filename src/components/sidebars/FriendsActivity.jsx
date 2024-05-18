@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import toast from 'react-hot-toast';
 import { IoIosClose } from "react-icons/io";
+import { SlUserFollow } from "react-icons/sl";
+import { RiUserAddLine } from "react-icons/ri";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import CreatePlaylistModal from '../modals/CreatePlaylistModal';
+import AddFollowingModal from '../modals/AddFollowingModal';
 
 
-function FriendsActivity() {
-
-  const handleX = () => {
-  }
+function FriendsActivity(props) {
 
   return (
     <div className='px-4 py-4 flex gap-x-2 relative items-center'>
@@ -22,9 +24,10 @@ function FriendsActivity() {
                     end-0
                     pr-4
                     '>
-            <button onClick={handleX}>
-                <IoIosClose className='text-white' size={30}/>
+            <button onClick={props.onClickAdd}>
+                <RiUserAddLine className='text-neutral-400 hover:text-white' size={27}/>
             </button>
+
         </div>
     </div>
   )

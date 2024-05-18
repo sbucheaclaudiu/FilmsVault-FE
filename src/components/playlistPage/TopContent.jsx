@@ -15,6 +15,7 @@ import { MdEdit } from "react-icons/md";
 import { deletePlaylist } from '../../api/Playlist';
 import ModifyPlaylistModal from '../modals/ModifyPlaylistModal';
 import RandomMovieModal from '../modals/RandomMovieModal';
+import { getUser } from '../../auth/AuthContext';
 
 
 function TopContent(props) {
@@ -34,6 +35,7 @@ function TopContent(props) {
     const navigate = useNavigate();
 
     const [isVisible, setIsVisible] = useState(false);
+    const [user, setUser] = useState(null);
     const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
     const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
     
@@ -163,6 +165,14 @@ function TopContent(props) {
         };
     }, []);
 
+    useEffect(() => {
+        console.log("use");
+        const currentUser = getUser();
+        if (currentUser) {
+            setUser(currentUser);
+        }
+      }, []);
+
     return (
         <div className='
                 opacity-1
@@ -197,14 +207,16 @@ function TopContent(props) {
                     hover:text-white
                     transition
                 '/>
-                <IoTrashBin onClick={onDeletePlaylist}
+                <button disabled={user && props.playlist.playlistUsername != user.username}>
+                    <IoTrashBin onClick={onDeletePlaylist}
                     size={30}
                     className='
                     text-neutral-400
                     cursor-pointer
                     hover:text-white
                     transition
-                '/>
+                    '/>
+                </button>
                 <SlOptions onClick={toggleMoreMenu}
                     size={32}
                     className='
@@ -231,12 +243,14 @@ function TopContent(props) {
                        ">
                     <button 
                         onClick={onDeletePlaylist}
+                        disabled={user && props.playlist.playlistUsername != user.username}
                         className={`text-md w-full py-2 px-[12px] text-left hover:bg-neutral-600 hover:rounded-sm flex text-md items-center`}
                     >
                         Delete
                         <IoTrashBin size={20} className='text-neutral-400 ml-auto'/>
                     </button>
                     <button 
+                        disabled={user &&props.playlist.playlistUsername != user.username}
                         onClick={onModifyButton}
                         className={`text-md w-full py-2 px-[12px] text-left hover:bg-neutral-600 hover:rounded-sm flex text-md items-center border-b-[1px] border-neutral-600`}
                     >

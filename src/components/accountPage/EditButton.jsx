@@ -11,8 +11,8 @@ function EditButton(props) {
       className={twMerge(
         `
         w-1/4
-        rounded-full
-        bg-rose-600
+        rounded-3xl
+        bg-neutral-600/10
         border
         border-transparent
         px-3 
@@ -21,12 +21,13 @@ function EditButton(props) {
         disabled:opacity-50
         text-white
         font-bold
-        hover:bg-rose-700
+        hover:bg-rose-600/80
         transition
         shadow-xl
         flex
         justify-center
         items-center
+        !z-30
       `,
         props.disabled && 'opacity-75 cursor-not-allowed',
         props.className
