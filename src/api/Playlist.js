@@ -33,6 +33,34 @@ export const getPlaylistByUser = async (userId) => {
   }
 }
 
+export const getRandomPlaylists = async (userId) => {
+  try {
+    const response = await axios.get(`${baseUrl}getRandomPlaylists?userId=` + userId, 
+          { 
+             headers: authHeader(),
+          });
+ 
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export const getPlaylistsByName = async (name) => {
+  try {
+    const response = await axios.get(`${baseUrl}getPlaylistsByName?name=` + name, 
+          { 
+             headers: authHeader(),
+          });
+ 
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 export const getPlaylistById = async (id) => {
   try {
     const response = await axios.get(`${baseUrl}getPlaylistById?id=` + id, 

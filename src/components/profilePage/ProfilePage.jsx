@@ -92,7 +92,7 @@ function ProfilePage() {
             </div>
 
             <div className='pl-4 pr-5 mb-6'>
-                <HeaderScroll headerName="Public Playlists"/>
+                <HeaderScroll headerName={`Public Playlists by ${user.name}`}/>
 
                 <SlideScroll
                   length={playlists.length}

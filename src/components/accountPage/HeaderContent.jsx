@@ -35,6 +35,8 @@ function HeaderContent(props) {
                         md:flex-row
                         items-center
                         gap-x-5
+                        w-full
+                        max-w-full
                 '>
                 <div
                     className={`relative h-48 w-48 rounded-full overflow-hidden min-w-0 flex-shrink-0 shadow-xl 
@@ -72,11 +74,13 @@ function HeaderContent(props) {
                             gap-y-2
                             mt-4
                             md:mt-0
+                            w-full
+                            max-w-full
                     '>
                     <div className='hidden md:block font-semibold text-sm text-white'>
-                        Profile
+                        Account
                     </div>
-                    <h1 className='
+                    <p className='
                                 text-white
                                 text-4xl
                                 sm:text-5xl
@@ -84,11 +88,11 @@ function HeaderContent(props) {
                                 font-semibold
                                 mb-2
                                 mt-2
-                                w-full
                                 truncate
+                                max-w-full
                         '>
                         {props.user.name}
-                    </h1>
+                    </p>
                     <div className='
                               text-white
                                 text-xl

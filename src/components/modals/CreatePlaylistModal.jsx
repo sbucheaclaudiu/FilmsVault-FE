@@ -81,7 +81,7 @@ function CreatePlaylistModal(props) {
                 props.onPlaylistCreated();
 
             } catch (error) {
-                toast.error("Something went wrong.(Playlist photo can't be null!)");
+                toast.error("Something went wrong.(The uploaded image format is not supported.");
             } finally {
                 setIsLoading(false);
                 onClose();

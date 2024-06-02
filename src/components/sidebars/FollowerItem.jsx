@@ -86,6 +86,8 @@ function FollowerItem(props) {
             >
                 {props.user.name}
             </p>
+
+            { (props.user.lastWatchedName != "") && (
             <div className='flex mt-[20px] mb-[-35px] text-neutral-500'>
                 <BiCameraMovie size={15} className='mr-1 mt-[2px]'/>
                 <p 
@@ -95,6 +97,8 @@ function FollowerItem(props) {
                      {props.user.lastWatchedName} 
                 </p>
             </div>
+            )}
+            { (props.user.lastWatchlistName != "") && (
             <div className='flex mt-[20px] justify-center text-neutral-500'>
                 <MdOutlineNextPlan size={15} className='mr-1 mt-[2px]'/>
                 <p 
@@ -104,6 +108,31 @@ function FollowerItem(props) {
                     {props.user.lastWatchlistName} 
                 </p>
             </div>
+            )}
+
+            { (props.user.lastWatchedName == "") && (
+            <div className='flex mt-[20px] mb-[-35px] text-neutral-500'>
+                <BiCameraMovie size={15} className='mr-1 mt-[2px]'/>
+                <p 
+                    className='font-bold text-sm w-36 truncate hover:underline hover:text-neutral-300 hover:cursor-pointer'
+                    onClick={goToMovieWatched}
+                >
+                    not yet
+                </p>
+            </div>
+            )}
+            { (props.user.lastWatchlistName == "") && (
+            <div className='flex mt-[20px] justify-center text-neutral-500'>
+                <MdOutlineNextPlan size={15} className='mr-1 mt-[2px]'/>
+                <p 
+                    className='font-bold text-sm w-36 truncate hover:underline hover:text-neutral-300 hover:cursor-pointer'
+                    onClick={goToMovieWatchlist}
+                > 
+                    not yet 
+                </p>
+            </div>
+            )}
+
         </div>
       </div>
   )

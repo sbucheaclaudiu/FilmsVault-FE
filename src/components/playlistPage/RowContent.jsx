@@ -61,6 +61,10 @@ function RowContent(props) {
         };
     }, []);
 
+    console.log(user);
+    console.log(props.playlist.playlistUsername);
+    console.log(props.movie);
+
     return (
         <tr onClick={handleClick} key={props.index} className='hover:bg-neutral-600/20 hover-bg-rounded relative'>
             <td className="row-table-playlist w-10 text-xl">{props.index + 1}</td>
@@ -87,7 +91,7 @@ function RowContent(props) {
                     className='cursor-pointer hover:text-white hover:scale-120 transform transition'
                     onClick={(event) => {
                         event.stopPropagation(); 
-                        if (props.playlist.playlistUsername == user.username) {
+                        if (props.playlist.playlistUsername == user.name) {
                             toggleMenu(); 
                         }
                     }}

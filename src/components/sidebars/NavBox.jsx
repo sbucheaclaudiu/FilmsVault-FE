@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom'
 import { HiHome } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
 import { GiArtificialHive } from "react-icons/gi";
+import { CgPlayListSearch } from "react-icons/cg";
+import { BiMoviePlay } from "react-icons/bi";
+
 
 function NavBox() {
   const location = useLocation();
@@ -22,12 +25,6 @@ function NavBox() {
       active: pathname === "/search",
       href: '/search',
     },
-    {
-      icon: GiArtificialHive,
-      label: "AI",
-      active: pathname === "/ai",
-      
-    }
   ], []);
   
   return (

@@ -38,6 +38,7 @@ function HeaderContent(props) {
 
   console.log(user);
   console.log(props.playlist);
+  console.log(props.playlist.playlistUsername);
 
   return (
     <div className='mt-16'>
@@ -49,7 +50,7 @@ function HeaderContent(props) {
                         gap-x-5
                 '>
                     <button
-                      disabled={user && props.playlist.playlistUsername != user.username}
+                      disabled={(user && props.playlist.playlistUsername != user.name)}
                       className={`relative h-48 w-48 rounded-xl overflow-hidden min-w-0 flex-shrink-0 shadow-xl ${
                         isHovered ? 'opacity-80' : ''
                       }`}
@@ -62,7 +63,7 @@ function HeaderContent(props) {
                         alt="playlist"
                         className='h-full w-full shadow-xl object-cover'
                       />
-                      {(isHovered && user && props.playlist.playlistUsername == user.username) && (
+                      {(isHovered && user && props.playlist.playlistUsername == user.name) && (
                       <div className="absolute inset-0 flex flex-col justify-center items-center">
                           <CiEdit size={50} className='text-white'/>
                       </div>
@@ -84,8 +85,8 @@ function HeaderContent(props) {
                         <h1 className='
                                 text-white
                                 text-4xl
-                                sm:text-5xl
-                                lg:text-7xl
+                                sm:text-4xl
+                                lg:text-6xl
                                 font-semibold
                                 truncate
                         '>

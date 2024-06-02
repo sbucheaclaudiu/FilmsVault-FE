@@ -69,30 +69,24 @@ function TopContent(props) {
       }
 
     function downloadTxtFile(text, fileName) {
-        // Creează un obiect Blob cu conținutul textului
         const blob = new Blob([text], { type: 'text/plain' });
     
-        // Creează un URL pentru obiectul Blob
         const url = URL.createObjectURL(blob);
     
-        // Creează un element <a> pentru a descărca fișierul
         const link = document.createElement('a');
         link.href = url;
         link.download = fileName;
     
-        // Adaugă elementul <a> la DOM
         document.body.appendChild(link);
     
-        // Simulează un clic pe elementul <a> pentru a declanșa descărcarea
         link.click();
     
-        // Elimină elementul <a> din DOM
         document.body.removeChild(link);
     }
 
     const onDownloadTxt = () => {
         let moviesInfo = '';
-        let no = 0;
+        let no = 1;
 
         props.moviesList.forEach(movie => {
         moviesInfo += `${no}. ${movie.movieName} (${movie.releaseDate})\n`;
@@ -117,10 +111,13 @@ function TopContent(props) {
     };
 
     const getRandomMovie = () => {
-        const randomIndex = Math.floor(Math.random() * props.moviesList.length);
-        console.log(props.moviesList[randomIndex]);
-        setRandomMovie(props.moviesList[randomIndex])
-        setisOpenRandomMovieModal(true);
+        if(props.moviesList.length > 0){
+            const randomIndex = Math.floor(Math.random() * props.moviesList.length);
+            
+            setRandomMovie(props.moviesList[randomIndex])
+            setisOpenRandomMovieModal(true);
+        }
+        
     }
     
     const sortByName = () => {
@@ -166,7 +163,6 @@ function TopContent(props) {
     }, []);
 
     useEffect(() => {
-        console.log("use");
         const currentUser = getUser();
         if (currentUser) {
             setUser(currentUser);
@@ -207,7 +203,7 @@ function TopContent(props) {
                     hover:text-white
                     transition
                 '/>
-                <button disabled={user && props.playlist.playlistUsername != user.username}>
+                <button disabled={(user && props.playlist.playlistUsername != user.name)}>
                     <IoTrashBin onClick={onDeletePlaylist}
                     size={30}
                     className='
@@ -243,14 +239,14 @@ function TopContent(props) {
                        ">
                     <button 
                         onClick={onDeletePlaylist}
-                        disabled={user && props.playlist.playlistUsername != user.username}
+                        disabled={(user && props.playlist.playlistUsername != user.name)}
                         className={`text-md w-full py-2 px-[12px] text-left hover:bg-neutral-600 hover:rounded-sm flex text-md items-center`}
                     >
                         Delete
                         <IoTrashBin size={20} className='text-neutral-400 ml-auto'/>
                     </button>
                     <button 
-                        disabled={user &&props.playlist.playlistUsername != user.username}
+                        disabled={(user && props.playlist.playlistUsername != user.name)}
                         onClick={onModifyButton}
                         className={`text-md w-full py-2 px-[12px] text-left hover:bg-neutral-600 hover:rounded-sm flex text-md items-center border-b-[1px] border-neutral-600`}
                     >

@@ -10,6 +10,7 @@ function SlideScroll(props) {
                 text-neutral-400
                 ml-8
                 text-md
+                mb-6
                 `, props.className)}
            >
               {props.message}

@@ -42,14 +42,14 @@ function HeaderContent() {
                      mt-4
                      gap-x-4
                 '>
-                    <HeaderPlaylist image = {require("../../assets/watchlist.jpg")}
+                    {/* <HeaderPlaylist image = {require("../../assets/watchlist.jpg")}
                               name="Watchlist"
                               href="watchlist"
                     />
                     <HeaderPlaylist image = {require("../../assets/vault.jpg")}
                               name="Watched"
                               href="watched"
-                    />
+                    /> */}
                 </div>
             </div>
   )

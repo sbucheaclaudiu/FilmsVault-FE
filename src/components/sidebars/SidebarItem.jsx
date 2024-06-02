@@ -23,8 +23,8 @@ function SidebarItem(item) {
             `, item.active && "text-white"
             )
           }>
-        <item.icon size={26}/>
-        <p className="truncate w-full font-semibold"> {item.label} </p>
+        <item.icon size={28}/>
+        <p className="truncate w-full text-md font-semibold"> {item.label} </p>
     </Link>
   )
 }

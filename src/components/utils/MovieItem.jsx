@@ -6,9 +6,11 @@ import { getDetails } from '../../api/GetDetails';
 function MovieItem(props) {
   const navigate = useNavigate();
 
+  console.log(props.movie);
+
   const handleClick = async () => {
     const details = await getDetails(props.movie.type, props.movie.movieId);
-    
+
     if(props.movie.type === "movie"){
       navigate(`/movie/${props.movie.movieName.replace(/\s/g, "")}`, { state: { movie: details } });
     }

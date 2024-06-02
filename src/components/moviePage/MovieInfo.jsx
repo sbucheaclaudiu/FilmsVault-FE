@@ -4,6 +4,7 @@ import "../styleComponents.css"
 import VideoItem from './VideoItem'
 import SlideScroll from '../showFormat/SlideScroll'
 import HeaderScroll from '../utils/HeaderScroll'
+import MovieList from '../utils/MovieList'
 
 function MovieInfo(props) {
 
@@ -29,6 +30,7 @@ function MovieInfo(props) {
                 </SlideScroll>
             </div>
 
+            <div className='pb-20'>
             <HeaderScroll headerName="CAST" length={props.cast.length} />
             <SlideScroll
                         length={props.cast.length}
@@ -42,6 +44,20 @@ function MovieInfo(props) {
                     />
                 ))}
             </SlideScroll>
+            </div>
+
+            <div className='pb-2'>
+            <HeaderScroll headerName="More Like This" length={props.recommendedMovies.length} />
+            <SlideScroll
+                        length={props.recommendedMovies.length}
+                        message="No movies like this found."
+                        className="text-xl"
+                >
+                    <MovieList
+                        movies={props.recommendedMovies}
+                    />
+            </SlideScroll>
+            </div>
 
         </div>
     )

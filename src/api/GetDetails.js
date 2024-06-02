@@ -67,6 +67,20 @@ export const getCast = async (type, id) => {
     }
   }
 
+  export const getRecommended = async (title) => {
+    try {
+      const response = await axios.get(`${baseUrl}getRecommendations?title=` + title, 
+              { 
+                 headers: authHeader(),
+              });
+     
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
   export const getMovieCredits = async (id) => {
     try {
       const response = await axios.get(`${baseUrl}getMovieCredits?id=` + id, 
